@@ -5,12 +5,13 @@ import Rando from './Rando';
 import Button from './Button';
 import BrokenClick from './BrokenClick';
 import BrokenClick2 from './BrokenClick2';
+import Clicker from './Clicker';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <BrokenClick2 />
+      <Clicker maxNum={10} />
     </div>
   );
 }
