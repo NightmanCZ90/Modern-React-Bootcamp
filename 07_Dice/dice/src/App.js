@@ -5,7 +5,10 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      <Die />
+      <Die face="five" />
+      <Die face="four" />
+      <Die face="two" />
+      <Die face="six" />
     </div>
   );
 }
