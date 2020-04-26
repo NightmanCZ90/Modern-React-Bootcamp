@@ -4,14 +4,13 @@ import './App.css';
 import ScoreKeeper from './ScoreKeeper';
 import IconList from './IconList';
 import Ball from './Ball';
+import Lottery from './Lottery';
 
 function App() {
   return (
     <div className="App">
-      <Ball num={8} />
-      <Ball num={1} />
-      <Ball num={23} />
-      <Ball num={45} />
+      <Lottery />
+      <Lottery title="Mini Daily" maxNum={10} numBalls={4} />
     </div>
   );
 }
