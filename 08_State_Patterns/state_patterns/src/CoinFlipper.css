@@ -1,0 +1,9 @@
+.CoinFlipper button {
+  background-color: lightblue;
+  color: white;
+  font-size: 120%;
+  border-radius: 10px;
+  margin-top: 1em;
+  outline: none;
+  padding: 5px;
+}

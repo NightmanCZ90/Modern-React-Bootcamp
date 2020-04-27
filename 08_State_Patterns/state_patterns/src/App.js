@@ -5,12 +5,13 @@ import ScoreKeeper from './ScoreKeeper';
 import IconList from './IconList';
 import Ball from './Ball';
 import Lottery from './Lottery';
+import Coin from './Coin';
+import CoinFlipper from './CoinFlipper';
 
 function App() {
   return (
     <div className="App">
-      <Lottery />
-      <Lottery title="Mini Daily" maxNum={10} numBalls={4} />
+      <CoinFlipper />
     </div>
   );
 }
