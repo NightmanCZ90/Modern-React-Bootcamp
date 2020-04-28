@@ -7,11 +7,14 @@ import Ball from './Ball';
 import Lottery from './Lottery';
 import Coin from './Coin';
 import CoinFlipper from './CoinFlipper';
+import Box from './Box';
+import ColorBoxes from './ColorBoxes';
+
 
 function App() {
   return (
     <div className="App">
-      <CoinFlipper />
+      <ColorBoxes />
     </div>
   );
 }
