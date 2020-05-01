@@ -4,14 +4,16 @@ class Form extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: ''
+      username: '',
+      email: '',
+      password: ''
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   handleChange(evt) {
     this.setState({
-      username: evt.target.value
+      [evt.target.name]: evt.target.value
     })
   }
   handleSubmit(evt) {
@@ -25,8 +27,23 @@ class Form extends Component {
         <h1>Form Demo</h1>
         <form onSubmit={this.handleSubmit}>
           <input 
-            type="text" 
+            name='username'
+            type='text' 
             value={this.state.username} 
+            onChange={this.handleChange} 
+          />
+          <input 
+            name='email'
+            type='email' 
+            placeholder='email' 
+            value={this.state.email} 
+            onChange={this.handleChange} 
+          />
+          <input 
+            name='password'
+            type='password' 
+            placeholder='password' 
+            value={this.state.password} 
             onChange={this.handleChange} 
           />
           <button>Submit!</button>
