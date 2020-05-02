@@ -5,20 +5,29 @@ import NewTodoForm from './NewTodoForm';
 class TodoList extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      todos: [{task: 'Clean the House', isDone: false}]
-    }
-    this.createTodo = this.createTodo.bind(this);
+    this.state = {todos: []}
+    this.create = this.create.bind(this);
+    this.remove = this.remove.bind(this);
+    this.update = this.update.bind(this);
   }
   remove(id) {
     this.setState(state => ({
-      todos: this.state.todos.filter(todo => todo.id !== id)
+      todos: state.todos.filter(todo => todo.id !== id)
     }))
   }
-  createTodo(todo) {
+  create(newTodo) {
     this.setState(state => ({
-      todos: [...this.state.todos, todo]
+      todos: [...this.state.todos, newTodo]
     }))
+  }
+  update(id, updatedTask){
+    const updatedTodos = this.state.todos.map(todo => {
+      if(todo.id === id) {
+        return {...todo, task: updatedTask}
+      }
+      return todo;
+    })
+    this.setState({todos: updatedTodos})
   }
   render() {
     const todos = this.state.todos.map(todo => (
@@ -26,15 +35,17 @@ class TodoList extends Component {
         key={todo.id}
         id={todo.id}
         task={todo.task}
-        remove={() => this.remove(todo.id)}
+        completed={todo.isDone}
+        removeTodo={this.remove}
+        updateTodo={this.update}
       />
     ))
     return(
       <div>
         <h1>Todo List!</h1>
         <p>A Simple React Todo List App</p>
-        {todos}
-        <NewTodoForm createTodo={this.createTodo} />
+        <ul>{todos}</ul>
+        <NewTodoForm createTodo={this.create} />
       </div>
     )
   }
