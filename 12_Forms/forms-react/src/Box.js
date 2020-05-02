@@ -3,11 +3,14 @@ import React, { Component } from 'react'
 class Box extends Component {
   render() {
     return(
-      <div 
-        height={this.height}
-        width={this.width}
-        color={this.color}
-      >
+      <div>
+        <div style={{
+          height: `${this.props.height}em`,
+          width: `${this.props.width}em`,
+          backgroundColor: this.props.color
+        }}>
+        </div>
+        <button>Remove Box</button>
       </div>
     )
   }

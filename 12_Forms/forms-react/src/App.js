@@ -4,6 +4,7 @@ import './App.css';
 import Form from './Form'
 import ShoppingList from './ShoppingList';
 import BoxList from './BoxList';
+import Box from './Box';
 
 
 function App() {
