@@ -21,15 +21,15 @@ class BoxList extends Component {
       boxes: [...this.state.boxes, box]
     }))
   }
-  // renderBoxes() {
-  //   return (
-  //     <div>
-  //       {this.state.boxes.map(box => (
-  //         <Box />
-  //       ))}
-  //     </div>
-  //   )
-  // }
+  renderBoxes() {
+    return (
+      <div>
+        {this.state.boxes.map(box => (
+          <Box />
+        ))}
+      </div>
+    )
+  }
   render() {
     const boxes = this.state.boxes.map(box => (
       <Box 

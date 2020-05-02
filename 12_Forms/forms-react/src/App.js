@@ -5,14 +5,12 @@ import Form from './Form'
 import ShoppingList from './ShoppingList';
 import BoxList from './BoxList';
 import Box from './Box';
-import Todo from './Todo';
-import TodoList from './TodoList';
 
 
 function App() {
   return (
     <div className="App">
-      <TodoList />
+      <BoxList />
     </div>
   );
 }
