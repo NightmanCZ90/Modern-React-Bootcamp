@@ -7,14 +7,18 @@ class BoxList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      boxes: [{height: 10, width: 10, color: 'purple'}]
+      boxes: []
     }
-    this.addBox = this.addBox.bind(this);
+    this.create = this.create.bind(this);
   }
-  addBox(box) {
-    let newBox = {...box, id: uuid()}
+  remove(id) {
+    this.setState({
+      boxes: this.state.boxes.filter(box => box.id !== id)
+    })
+  }
+  create(box) {
     this.setState(state => ({
-      boxes: [...state.boxes, newBox]
+      boxes: [...this.state.boxes, box]
     }))
   }
   renderBoxes() {
@@ -28,12 +32,19 @@ class BoxList extends Component {
   }
   render() {
     const boxes = this.state.boxes.map(box => (
-      <Box height={box.height} width={box.width} color={box.color} /> 
+      <Box 
+        key={box.id} 
+        box={box.id}
+        height={box.height} 
+        width={box.width} 
+        color={box.color} 
+        removeBox={() => this.remove(box.id)}
+      /> 
     ))
     return(
       <div>
         <h1>Color Box Maker</h1>
-        <NewBoxForm />
+        <NewBoxForm createBox={this.create} />
         {boxes}
       </div>
     )
