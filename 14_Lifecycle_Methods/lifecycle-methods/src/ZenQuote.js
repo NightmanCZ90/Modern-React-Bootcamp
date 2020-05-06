@@ -25,7 +25,9 @@ class ZenQuote extends Component {
         3000
       )
     })
-    // set state with that data
+  }
+  componentDidUpdate(){
+    console.log("INSIDE COMPONENT DID UPDATE")
   }
   render() {
     return (
