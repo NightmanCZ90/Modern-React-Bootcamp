@@ -40,6 +40,11 @@ class TodoList extends Component {
     })
     this.setState({todos: updatedTodos})
   }
+  componentDidUpdate(prevProps, prevState) {
+    console.log("IN COMPONENT DID UPDATE")
+    console.log(prevState.todos)
+    console.log(this.state.todos)
+  }
   render() {
     const todos = this.state.todos.map(todo => (
       <Todo 
