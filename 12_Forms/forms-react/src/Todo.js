@@ -19,6 +19,9 @@ class Todo extends Component {
     console.log(prevProps.task)
     console.log(this.props.task)
   }
+  componentWillUnmount(){
+    console.log("IN COMPONENT WILL UNMOUNT")
+  }
   handleToggle(evt) {
     this.props.toggleTodo(this.props.id)
   }
