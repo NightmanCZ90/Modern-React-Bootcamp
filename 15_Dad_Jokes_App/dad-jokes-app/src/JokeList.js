@@ -15,6 +15,7 @@ class JokeList extends Component {
        jokes: JSON.parse(window.localStorage.getItem("jokes") || "[]"),
        loading: false
     }
+    this.seenJokes = new Set(this.state.jokes.map(j => j.text))
     this.handleClick = this.handleClick.bind(this)
   }
   
@@ -23,19 +24,29 @@ class JokeList extends Component {
   }
 
   async getJokes() {
-    let jokes = []
-    while(jokes.length < this.props.numJokesToGet) {
-      let res = await axios.get('https://icanhazdadjoke.com/', {
-        headers: {Accept: 'application/json'}
-      })
-      jokes.push({id: uuid(), text: res.data.joke, votes: 0})
+    try {
+      let jokes = []
+      while(jokes.length < this.props.numJokesToGet) {
+        let res = await axios.get('https://icanhazdadjoke.com/', {
+          headers: {Accept: 'application/json'}
+        })
+        let newJoke = res.data.joke
+        if (!this.seenJokes.has(newJoke)) {
+          jokes.push({id: uuid(), text: newJoke, votes: 0})
+        } else {
+          console.log("FOUND A DUPLICATE")
+        }
+      }
+      this.setState(st => ({
+        loading: false,
+        jokes: [...st.jokes, ...jokes]
+      }),
+      () => window.localStorage.setItem("jokes", JSON.stringify(this.state.jokes))
+      )
+    } catch(err){
+      alert(err)
+      this.setState({loading: false})
     }
-    this.setState(st => ({
-      loading: false,
-      jokes: [...st.jokes, ...jokes]
-    }),
-    () => window.localStorage.setItem("jokes", JSON.stringify(this.state.jokes))
-    )
   }
 
   handleVote(id, delta) {
@@ -59,6 +70,7 @@ class JokeList extends Component {
         </div>
       )
     }
+    let jokes = this.state.jokes.sort((a, b) => b.votes - a.votes)
     return (
       <div className='JokeList' >
         <div className='JokeList-sidebar' >
@@ -69,7 +81,7 @@ class JokeList extends Component {
           <button className='JokeList-getmore' onClick={this.handleClick} >New Jokes</button>
         </div>
         <div className='JokeList-jokes' >
-          {this.state.jokes.map(j => (
+          {jokes.map(j => (
             <Joke key={j.id} votes={j.votes} text={j.text} upvote={() => this.handleVote(j.id, 1)} downvote={() => this.handleVote(j.id, -1)} />
           ))}
         </div>
