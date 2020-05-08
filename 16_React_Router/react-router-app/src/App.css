@@ -10,7 +10,6 @@
 
 .App-nav {
   width: 50%;
-  height: 50px;
   display: flex;
   margin: 1rem auto;
   justify-content: space-around;
