@@ -2,6 +2,7 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import {Route, Switch} from 'react-router-dom'
+import FoodSearch from './FoodSearch'
 import Food from './Food';
 import Meal from './Meal'
 
@@ -9,7 +10,7 @@ function App() {
   return (
     <div className="App">
       <Switch>
-        <Route exact path="/" render={() => <h1>Home</h1>} />
+        <Route exact path="/" render={() => <FoodSearch />} />
         <Route 
           exact 
           path="/food/:name" 
