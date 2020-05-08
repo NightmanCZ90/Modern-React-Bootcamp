@@ -10,7 +10,11 @@ function App() {
   return (
     <div className="App">
       <Switch>
-        <Route exact path="/" render={() => <FoodSearch />} />
+        <Route 
+        exact 
+        path="/" 
+        component={FoodSearch}
+        />
         <Route 
           exact 
           path="/food/:name" 
