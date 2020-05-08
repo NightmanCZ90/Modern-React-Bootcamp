@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import {Route} from 'react-router-dom'
 import Food from './Food';
+import Meal from './Meal'
 
 function App() {
   return (
@@ -12,6 +13,11 @@ function App() {
         path="/food/:name" 
         // render={(routeProps) => <Food name={routeProps.match.params.name} stuff={routeProps} />} 
         render={(routeProps) => <Food {...routeProps} />} 
+      />
+      <Route 
+        exact 
+        path="/food/:foodName/drink/:drinkName" 
+        component={Meal} 
       />
     </div>
   );
