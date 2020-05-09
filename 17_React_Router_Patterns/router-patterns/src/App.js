@@ -5,10 +5,12 @@ import {Route, Switch} from 'react-router-dom'
 import FoodSearch from './FoodSearch'
 import Food from './Food';
 import Meal from './Meal'
+import Navbar from './Navbar'
 
 function App() {
   return (
     <div className="App">
+      <Navbar />
       <Switch>
         <Route 
         exact 
