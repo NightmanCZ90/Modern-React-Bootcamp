@@ -12,7 +12,9 @@ function App(props) {
   return (
     <div className="App">
       <Navbar dogs={props.dogs} />
-      <Routes dogs={props.dogs} />
+      <div className='container'>
+        <Routes dogs={props.dogs} />
+      </div>
     </div>
   );
 }
