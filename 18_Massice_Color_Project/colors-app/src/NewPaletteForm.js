@@ -97,7 +97,10 @@ class NewPaletteForm extends Component {
   };
 
   addNewColor(newColor) {
-    this.setState({ colors: [...this.state.colors, newColor], newColorName: '' });
+    this.setState({ 
+      colors: [...this.state.colors, newColor], 
+      newColorName: '' 
+    });
   }
 
   clearColors() {
@@ -110,15 +113,14 @@ class NewPaletteForm extends Component {
     const allColors = this.props.palettes.map(p => p.colors).flat();
     let rand = Math.floor(Math.random() * allColors.length);
     const randomColor = allColors[rand];
-    this.setState({ colors: [...this.state.colors, randomColor] });
+    this.setState({ 
+      colors: [...this.state.colors, randomColor] 
+    });
   }
 
-  handleSubmit(newPaletteName) {
-    const newPalette = { 
-      paletteName: newPaletteName, 
-      id: newPaletteName.toLowerCase().replace(/ /g, '-'),
-      colors: this.state.colors 
-    };
+  handleSubmit(newPalette) {
+    newPalette.id = newPalette.paletteName.toLowerCase().replace(/ /g, '-');
+    newPalette.colors = this.state.colors;
     this.props.savePalette(newPalette);
     this.props.history.push('/');
   }
